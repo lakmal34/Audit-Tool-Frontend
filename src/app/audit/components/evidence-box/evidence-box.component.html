@@ -1,12 +1,3 @@
-<ngx-spinner
-bdOpacity = 1
-bdColor = "#fff"
-size = "medium"
-color = "#cf46ff"
-type = "fire"
-[fullScreen] = "true"
->
-</ngx-spinner>
 
 <div [ngClass]="statusColor">
 <div class="card  mb-5 pl-4 border-right-0 border-top-0 border-bottom-0" style="border-width: 5px; border-radius:0px;">
@@ -29,7 +20,6 @@ type = "fire"
         </div>
       </div>
     </div>
-    <!-- <button (click)="navigate()">Versions</button> -->
     <div class="d-flex mb-3 mt-3">
       <div [innerHtml]="question.description" class="text-secondary mb-0">
       </div>
@@ -68,7 +58,6 @@ type = "fire"
           >
           </ng-select>
         </div>
-        <!-- <button class="ml-3 btn btn-outline-primary" (click)="navigate()">Versions</button> -->
       </div>
       <div class="d-flex flex-row flex-md-row align-items-md-center py-1">
         <div class="mb-md-0 mb-2" style="padding-right:5px">
@@ -102,3 +91,12 @@ type = "fire"
   </div>
 </div>
 </div>
+<ngx-spinner 
+  bdOpacity = 1
+  bdColor = "rgba(255,255,255,1)"
+  size = "medium"
+  color = "#cf46ff"
+  type = "fire"
+  [fullScreen] = "false"
+  >
+</ngx-spinner>

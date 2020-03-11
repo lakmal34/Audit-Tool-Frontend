@@ -25,6 +25,7 @@ export class AdminComponent implements OnInit {
   productName = '';
   productDes = '';
   faSpinner = faSpinner;
+  loader = false;
 
   constructor(
     private adminService: AdminApiService,
@@ -34,13 +35,12 @@ export class AdminComponent implements OnInit {
     ) { }
 
   async ngOnInit() {
-    this.spinner.show();
+    this.showSpinner();
     await this.getAllProducts();
     await this.getAllUsers();
     await this.getAllOrganizations();
     const uId = await this.authService.isAdmin();
-    console.log(uId);
-    this.spinner.hide();
+    this.hideSpinner();
 
   }
 
@@ -54,7 +54,6 @@ export class AdminComponent implements OnInit {
 
   async getAllOrganizations() {
     this.organizations = await this.adminService.getAllOrganizations();
-    console.log(this.organizations);
   }
 
   async addUserToProject() {
@@ -87,5 +86,12 @@ export class AdminComponent implements OnInit {
   setSelectedOrganization(org: any) {
     this.selectedOrganization = org;
   }
+  async showSpinner() {
+    this.spinner.show();
+  }
 
+  async hideSpinner() {
+    this.loader = true;
+    this.spinner.hide();
+  }
 }

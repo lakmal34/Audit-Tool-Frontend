@@ -45,11 +45,13 @@ export class ViewQuestionsComponent implements OnInit {
   QCount: any;
   ACount: number;
   score: number;
+  length: number;
+  loader = false;
 
   async ngOnInit() {
     this.sub = this.route.params.subscribe(async params => {
+      this.showSpinner();
       this.knowledgeAreaApiService.nextMessage(0);
-      this.spinner.show();
       this.productId = +params['product-id'];
       this.phaseId = +params['product-phase-id'];
       this.knowledgeAreaId = +params['knowledge-area-id'];
@@ -61,9 +63,13 @@ export class ViewQuestionsComponent implements OnInit {
       await this.getQuestionCount(this.knowledgeAreaId);
       this.knowledgeAreaApiService.sharedACount.subscribe(count => {
         this.ACount = count;
+        if (this.QCount === 0 || this.ACount === 0) {
+          this.score = 0;
+        } else {
         this.score = (this.ACount / this.QCount) * 100;
+        }
       });
-      this.spinner.hide();
+      this.hideSpinner();
     });
   }
 
@@ -90,6 +96,16 @@ export class ViewQuestionsComponent implements OnInit {
 
   async getQuestionsByKnowledgeArea(id: number) {
     this.questions = await this.questionApiService.get(id);
+    this.length = this.questions.length;
+  }
+
+  async showSpinner() {
+    this.spinner.show();
+  }
+
+  async hideSpinner() {
+    this.loader = true;
+    this.spinner.hide();
   }
 
 }

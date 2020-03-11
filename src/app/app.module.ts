@@ -19,7 +19,9 @@ import { AvatarModule } from 'ngx-avatar';
 import { MomentModule } from 'ngx-moment';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +29,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     BrowserModule,
     AppRoutingModule,
     NgxsModule.forRoot(),
+    ModalModule.forRoot(),
     HttpClientModule,
     AmplifyAngularModule,
     AvatarModule,
@@ -36,7 +39,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     AccordionModule.forRoot(),
     CollapseModule.forRoot(),
     InfiniteScrollModule,
-
+    SharedModule
   ],
   providers: [
     {
@@ -49,7 +52,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     AuthGuardService,
     AuthService,
     AmplifyService,
-    RoleGuardService
+    RoleGuardService,
+
 
   ],
   bootstrap: [AppComponent],

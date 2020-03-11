@@ -84,10 +84,10 @@ export class EvidenceBoxComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     this.route.params.subscribe(async params => {
+      this.spinner.show();
       this.productId = +params['product-id'];
     });
     await this.getEvidenceByQuestionId(this.productId, this.question.id);
-    this.spinner.hide();
   }
 
   async getEvidenceByQuestionId(id: number, qid: number) {
